@@ -1,0 +1,19 @@
+{
+  "name": "algo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rimraf": "^5.0.1",
+    "rollup": "^3.27.0",
+    "rollup-plugin-typescript2": "^0.35.0",
+    "typescript": "^5.1.6"
+  }
+}
