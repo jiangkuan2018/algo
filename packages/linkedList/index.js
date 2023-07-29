@@ -1,3 +1,3 @@
-export * from './doubleLinkedList'
-export * from './linkedList'
-export * from './utils'
+export * from './doubleLinkedList.js'
+export * from './linkedList.js'
+export * from './utils.js'

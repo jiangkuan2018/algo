@@ -69,5 +69,13 @@ export function detectCycle(head) {
  * @returns {SingleListNode | null}
  */
 export function getIntersectionNode(headA, headB) {
-  return null
+  if (headA === null || headB === null) {
+    return null
+  }
+  let [pA, pB] = [headA, headB]
+  while (pA !== pB) {
+    pA = pA === null ? headB : pA.next
+    pB = pB === null ? headA : pB.next
+  }
+  return pA
 }
