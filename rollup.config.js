@@ -1,5 +1,4 @@
 import { defineConfig } from 'rollup'
-import typescript from 'rollup-plugin-typescript2'
 import * as rimraf from 'rimraf'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -23,13 +22,12 @@ function rollupPluginBuildStart(DIR) {
 }
 
 export default buildDir.map(DIR => defineConfig({
-  input: `./packages/${DIR}/index.ts`,
+  input: `./packages/${DIR}/index.js`,
   output: {
     dir: `./packages/${DIR}/dist`,
     format: 'es'
   },
   plugins: [
-    typescript(),
     rollupPluginBuildStart(DIR)
   ]
 }))

@@ -1,13 +1,11 @@
-type NodePointer = DoublyListNode | null
-
 export class DoublyListNode {
-  val: number
-  next: NodePointer
-  prev: NodePointer
   /**
    * @description 双链表节点
+   * @param {number} val 
+   * @param {DoublyListNode | null} next 
+   * @param {DoublyListNode | null} prev 
    */
-  constructor(val: number = 0, next: NodePointer = null, prev: NodePointer = null) {
+  constructor(val = 0, next = null, prev = null) {
     this.val = val
     this.next = next
     this.prev = prev
@@ -15,9 +13,6 @@ export class DoublyListNode {
 }
 
 export class DoublyLinkedList {
-  dummyHead: DoublyListNode
-  dummyTail: DoublyListNode
-  size: number
   constructor() {
     this.dummyHead = new DoublyListNode(Number.POSITIVE_INFINITY)
     this.dummyTail = new DoublyListNode(Number.NEGATIVE_INFINITY)
@@ -29,7 +24,7 @@ export class DoublyLinkedList {
    * 头部插入节点
    * @param {number} val 
    */
-  addAtHead(val: number) {
+  addAtHead(val) {
     const node = new DoublyListNode(val, this.dummyHead.next, this.dummyHead)
     if (this.dummyHead.next) {
       this.dummyHead.next.prev = node
@@ -41,7 +36,7 @@ export class DoublyLinkedList {
    * @description 尾部插入
    * @param {number} val 
    */
-  addAtTail(val: number) {
+  addAtTail(val) {
     const node = new DoublyListNode(val, this.dummyTail, this.dummyTail.prev)
     if (this.dummyTail.prev) {
       this.dummyTail.prev.next = node
@@ -49,8 +44,16 @@ export class DoublyLinkedList {
     this.dummyTail.prev = node
     this.size += 1
   }
-  
-  forEach(iter: (cur: DoublyListNode, index: number) => void) {
+  /**
+   * @callback iter
+   * @param {DoublyListNode} cur
+   * @param {number} index
+   */
+  /**
+   * @description 遍历
+   * @param {iter} iter - 链表迭代器
+   */
+  forEach(iter = (cur, index) => {}) {
     if (this.size === 0) {
       return
     }
@@ -71,7 +74,7 @@ export class DoublyLinkedList {
    * @param {number} index 
    * @param {number} val 
    */
-  addAtIndex(index: number, val: number) {
+  addAtIndex(index, val) {
     if (index === this.size) {
       return this.addAtTail(val)
     } else {
@@ -92,7 +95,7 @@ export class DoublyLinkedList {
    * @param {number} index 
    * @returns {number}
    */
-  get(index: number): number {
+  get(index) {
     let res = -1
     this.forEach((cur, idx) => {
       if (index === idx) {
@@ -105,7 +108,7 @@ export class DoublyLinkedList {
    * @description 删除指定下标的节点
    * @param {number} index 
    */
-  deleteAtIndex(index: number) {
+  deleteAtIndex(index) {
     this.forEach((cur, idx) => {
       if (index === idx) {
         if (cur.prev) {

@@ -1,17 +1,15 @@
-export type SingleNodePointer = SingleListNode | null
-
 export class SingleListNode {
-  val: number
-  next: SingleNodePointer
-  constructor(val: number, next: SingleNodePointer) {
+  /**
+   * @param {number} val 
+   * @param {object} next
+   */
+  constructor(val = 0, next = null) {
     this.val = val
     this.next = next 
   }
 }
 
 export class LinkedList {
-  head: SingleNodePointer
-  size: number
   constructor() {
     /**
      * 头节点
@@ -19,7 +17,16 @@ export class LinkedList {
     this.head = null
     this.size = 0
   }
-  forEach(iter = (cur: SingleListNode, index: number) => {}) {
+  /**
+   * @callback iter
+   * @param {SingleListNode} cur
+   * @param {number} index
+   */
+  /**
+   * @description 遍历
+   * @param {iter} iter - 链表迭代器
+   */
+  forEach(iter = (cur, index) => {}) {
     let current = this.head
     let idx = 0
     while (current) {
@@ -30,8 +37,9 @@ export class LinkedList {
   }
   /**
    * @description 头节点插入
+   * @param {number} val 
    */
-  addAtHead(val: number) {
+  addAtHead(val) {
     const head = new SingleListNode(val, this.head)
     this.head = head
     this.size += 1
@@ -40,14 +48,14 @@ export class LinkedList {
    * @description 末尾插入
    * @param {number} val 
    */
-  addAtTail(val: number) {
+  addAtTail(val) {
     if (this.size === 0) {
       return this.addAtHead(val)
     } else {
       /**
        * @type {SingleListNode}
        */
-      let last: SingleListNode
+      let last
       this.forEach((cur, index) => {
         last = cur
       })
@@ -61,7 +69,7 @@ export class LinkedList {
    * @param {number} index 
    * @param {number} val 
    */
-  addAtIndex(index: number, val: number) {
+  addAtIndex(index, val) {
     if (index === 0) {
       return this.addAtHead(val)
     } else {
@@ -80,14 +88,15 @@ export class LinkedList {
    * @param {number} index 
    * @returns {SingleListNode}
    */
-  at(index: number): SingleListNode {
+  at(index) {
     if (index > this.size - 1 || index < 0) {
       throw new Error('index not legal')
     }
     if (this.size === 0) {
       throw new Error('linked list is empty')
     }
-    let res: SingleListNode
+    /** @type {SingleListNode} */
+    let res
     this.forEach((cur, idx) => {
       if (index === idx) {
         res = cur
@@ -100,7 +109,7 @@ export class LinkedList {
    * @description 根据下标返回节点的val
    * @param {number} index
    */
-  get(index: number) {
+  get(index) {
     let res = -1
     this.forEach((cur, idx) => {
       if (index === idx) {
@@ -113,14 +122,15 @@ export class LinkedList {
    * @description 删除指定位置的节点 双指针删除
    * @param {number} index 
    */
-  deleteAtIndex(index: number) {
+  deleteAtIndex(index) {
     if (index === 0) {
       if (this.head instanceof SingleListNode) {
         this.head = this.head.next
       }
     } else {
+      /** @type {SingleListNode} */
       let cur = this.head
-      let prev: SingleNodePointer = null
+      let prev = null
       let idx = 0
       while (cur) {
         if (index === idx) {
