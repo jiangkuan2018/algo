@@ -3,7 +3,6 @@ import { TreeNode } from './index.js'
 /**
  * 二叉树前序遍历 递归
  * @param {TreeNode} root 
- * @param {number[]} res
  */
 export function preOrderRecursive(root, res = []) {
   res.push(root.val)

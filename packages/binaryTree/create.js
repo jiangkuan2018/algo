@@ -1,7 +1,7 @@
 export class TreeNode {
   /**
    * 树节点
-   * @param {number} val 
+   * @param {number | string} val 
    * @param {TreeNode | null} left 
    * @param {TreeNode | null} right 
    */
@@ -14,7 +14,7 @@ export class TreeNode {
 
 /**
  * 通过数组创建二叉树
- * @param {number[]} arr 
+ * @param {Array<number | string | null>} arr 
  * @returns {TreeNode}
  */
 export function createTreeFromArray(arr) {
