@@ -1,3 +1,2 @@
-export function mian() {
-  console.log('runnasdasdsing')
-}
+export * from './create.js'
+export * from './pre.js'

@@ -36,6 +36,7 @@ export function hasCycle(head) {
 }
 
 /**
+ * 找到链表入环的第一个节点
  * @param {SingleListNode} head
  * @returns {SingleListNode | null}
  */
@@ -63,7 +64,7 @@ export function detectCycle(head) {
 }
 
 /**
- * 
+ * 找到两个链表相交的节点
  * @param {SingleListNode} headA 
  * @param {SingleListNode} headB 
  * @returns {SingleListNode | null}
@@ -78,4 +79,52 @@ export function getIntersectionNode(headA, headB) {
     pB = pB === null ? headA : pB.next
   }
   return pA
+}
+
+/**
+ * 删除倒数第N个
+ * @param {SingleListNode} head 
+ * @param {number} n 
+ * @returns {SingleListNode}
+ */
+export function removeNthFromEnd(head, n) {
+  if (head === null) {
+    return head
+  }
+  let slow = head
+  let fast = head
+  let pre = null
+  let idx = 0
+  while (fast) {
+    if (idx >= n) {
+      pre = slow
+      slow = slow.next
+    }
+    idx += 1
+    fast = fast.next
+  }
+  if (pre === null) {
+    return head.next
+  } else {
+    pre.next = pre.next.next
+  }
+  return head
+}
+
+/**
+ * 
+ * @param {SingleListNode} head 
+ * @returns {SingleListNode}
+ */
+export function reverseList(head) {
+  let curr = head
+  let prev = null
+  while (curr) {
+    const temp = curr.next
+    curr.next = prev
+    prev = curr
+    curr = temp
+  }
+  // @ts-ignore
+  return prev
 }
