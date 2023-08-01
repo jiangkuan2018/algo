@@ -63,7 +63,7 @@ export function hasPathSum(root, targetSum) {
         temp.push(node.right)
       }
     }
-    temp.length && stack.push(temp)
+    temp.length && stack.unshift(temp)
   }
   return false
 }
