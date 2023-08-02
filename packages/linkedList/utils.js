@@ -128,3 +128,99 @@ export function reverseList(head) {
   // @ts-ignore
   return prev
 }
+
+/**
+ * @callback iter
+ * @param {SingleListNode} cur
+ * @param {number} index
+ */
+/**
+ * 
+ * @param {SingleListNode} head 
+ * @param {iter} iter 
+ */
+export function forEach(head, iter) {
+  let current = head
+  let idx = 0
+  while (current) {
+    iter(current, idx)
+    current = current.next
+    idx += 1
+  }
+}
+
+/**
+ * 
+ * @param {SingleListNode} head 
+ */
+export function toArray(head) {
+  const res = []
+  forEach(head, (v, i) => {
+    res.push(v.val)
+  })
+  return res
+}
+
+/**
+ * 删除链表的节点
+ * @param {SingleListNode} head 
+ * @param {number} val 
+ * @returns {SingleListNode}
+ */
+export function removeElements(head, val) {
+  let current = head
+  let prev = null
+  while (current) {
+    if (current.val === val) {
+      if (prev) {
+        prev.next = current.next
+      } else {
+        head = current.next
+      }
+      // 如果需要删除当前节点，不修改prev   p => c => n
+      // 因为 c等于val的时候p.next = n 然后current等于n，继续检查n，如果n也等于val，那么prev还是不变
+    } else {
+      prev = current
+    }
+    current = current.next
+  }
+  return head
+}
+
+/**
+ * 奇偶链表
+ * @param {SingleListNode} head 
+ */
+export function oddEvenList(head) {
+  if (head === null) {
+    return head
+  }
+  let current = head
+  let idx = 0
+  let prev = null
+  const odd = []
+  while (current) {
+    if (idx % 2 === 1) {
+      if (prev) {
+        prev.next = current.next // 删掉奇数位的节点
+      }
+      odd.push(current) // 记录奇数位的节点
+      // 当不满足条件的时候 再让prev记录   
+      // 当满足条件的时候 不改变prev，因为需要prev记录最后一个奇数位的节点
+    } else {
+      prev = current
+    }
+    current = current.next
+    idx += 1
+  }
+  // @ts-ignore
+  current = prev // 从最后一个节点向后关联odd的节点
+  while (current) {
+    const node = odd.shift() || null
+    current.next = node
+    // @ts-ignore
+    current = node
+  }
+  return head
+}
+
