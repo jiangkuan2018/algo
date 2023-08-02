@@ -120,10 +120,10 @@ export function reverseList(head) {
   let curr = head
   let prev = null
   while (curr) {
-    const temp = curr.next
-    curr.next = prev
+    const temp = curr.next // 保存下一个节点的指针
+    curr.next = prev // 把当前节点的next指向prev
     prev = curr
-    curr = temp
+    curr = temp // curr等于下一个节点
   }
   // @ts-ignore
   return prev
@@ -224,3 +224,32 @@ export function oddEvenList(head) {
   return head
 }
 
+/**
+ * 回文链表
+ * @param {SingleListNode} head 
+ * @returns {boolean}
+ */
+export function isPalindrome(head) {
+  let current = head
+  let prev = null
+  let idx = 0
+  while (current) {
+    // @ts-ignore
+    current.prev = prev
+    prev = current
+    current = current.next
+    idx += 1
+  }
+  current = head
+  let tail = prev
+  while (idx && tail && current) {
+    if (tail.val !== current.val) {
+      return false
+    }
+    // @ts-ignore
+    tail = tail.prev
+    current = current.next   
+    idx -= 2
+  }
+  return true
+}

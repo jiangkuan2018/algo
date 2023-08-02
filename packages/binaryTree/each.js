@@ -1,7 +1,5 @@
 import { TreeNode, createTreeFromArray } from "./index.js"
 
-const t1 = createTreeFromArray(['头', '左', '右', 1, 2, 3, 4])
-
 /**
  * 中序遍历
  * @param {TreeNode} root 
@@ -86,9 +84,3 @@ export function levelOrder(root) {
   }
   return res
 }
-
-// console.log(preorder(t1))
-// console.log(preorderStack(t1))
-// console.log(inorder(t1))
-// console.log(postorder(t1))
-// console.log(levelOrder(t1))

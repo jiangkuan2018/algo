@@ -1,4 +1,4 @@
-import { TreeNode, createTreeFromArray, createTreeFromHeight } from "./index.js"
+import { TreeNode } from "./index.js"
 
 /**
  * 
