@@ -1,4 +1,4 @@
-import { getIntersectionNode, createLinkedListFromArray, removeNthFromEnd, reverseList, oddEvenList, toArray as linkedListToArray, removeElements, isPalindrome } from '../index.js'
+import { getIntersectionNode, createLinkedListFromArray, removeNthFromEnd, reverseList, oddEvenList, toArray as linkedListToArray, removeElements, isPalindrome, toArray, mergeTwoLists } from '../index.js'
 import { log } from 'console'
 
 log('相交链表')
@@ -34,4 +34,16 @@ log('回文链表')
 console.log(isPalindrome(createLinkedListFromArray([1, 2, 2, 1]).head))
 console.log(isPalindrome(createLinkedListFromArray([1, 2]).head))
 console.log(isPalindrome(createLinkedListFromArray([1]).head))
+log('====================================')
+
+log('合并有序链表')
+console.log(toArray(mergeTwoLists(
+  createLinkedListFromArray([1, 2, 4]).head,
+  createLinkedListFromArray([1, 3, 4]).head,
+)))
+
+console.log(toArray(mergeTwoLists(
+  createLinkedListFromArray([2]).head,
+  createLinkedListFromArray([1]).head,
+)))
 log('====================================')
