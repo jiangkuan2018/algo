@@ -1,4 +1,4 @@
-import { getIntersectionNode, createLinkedListFromArray, removeNthFromEnd, reverseList, oddEvenList, toArray as linkedListToArray, removeElements, isPalindrome, toArray, mergeTwoLists } from '../index.js'
+import { getIntersectionNode, createLinkedListFromArray, removeNthFromEnd, reverseList, oddEvenList, toArray as linkedListToArray, removeElements, isPalindrome, toArray, mergeTwoLists, logHelper, addTwoNumbers } from '../index.js'
 import { log } from 'console'
 
 log('相交链表')
@@ -46,4 +46,21 @@ console.log(toArray(mergeTwoLists(
   createLinkedListFromArray([2]).head,
   createLinkedListFromArray([1]).head,
 )))
+log('====================================')
+
+log('两数相加')
+logHelper(addTwoNumbers(
+  createLinkedListFromArray([2, 4, 3]).head,
+  createLinkedListFromArray([5, 6, 4]).head,
+))
+
+logHelper(addTwoNumbers(
+  createLinkedListFromArray([0]).head,
+  createLinkedListFromArray([0]).head,
+))
+
+logHelper(addTwoNumbers(
+  createLinkedListFromArray([9,9,9,9,9,9,9]).head,
+  createLinkedListFromArray([9,9,9,9]).head,
+))
 log('====================================')

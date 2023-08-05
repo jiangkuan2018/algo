@@ -82,7 +82,7 @@ export function getIntersectionNode(headA, headB) {
 }
 
 /**
- * 删除倒数第N个
+ * @description 删除倒数第N个
  * @param {SingleListNode} head 
  * @param {number} n 
  * @returns {SingleListNode}
@@ -112,7 +112,7 @@ export function removeNthFromEnd(head, n) {
 }
 
 /**
- * 
+ * @description 反转链表
  * @param {SingleListNode} head 
  * @returns {SingleListNode}
  */
@@ -135,7 +135,7 @@ export function reverseList(head) {
  * @param {number} index
  */
 /**
- * 
+ * @description 链表遍历
  * @param {SingleListNode} head 
  * @param {iter} iter 
  */
@@ -150,7 +150,7 @@ export function forEach(head, iter) {
 }
 
 /**
- * 
+ * @description 链表转数组
  * @param {SingleListNode} head 
  */
 export function toArray(head) {
@@ -162,7 +162,7 @@ export function toArray(head) {
 }
 
 /**
- * 删除链表的节点
+ * @description 删除链表的节点
  * @param {SingleListNode} head 
  * @param {number} val 
  * @returns {SingleListNode}
@@ -188,7 +188,7 @@ export function removeElements(head, val) {
 }
 
 /**
- * 奇偶链表
+ * @description 奇偶链表
  * @param {SingleListNode} head 
  */
 export function oddEvenList(head) {
@@ -225,7 +225,7 @@ export function oddEvenList(head) {
 }
 
 /**
- * 回文链表
+ * @description 回文链表
  * @param {SingleListNode} head 
  * @returns {boolean}
  */
@@ -255,6 +255,7 @@ export function isPalindrome(head) {
 }
 
 /**
+ * @description 合并两个有序链表
  * @param {SingleListNode} list1
  * @param {SingleListNode} list2
  * @return {SingleListNode}
@@ -281,3 +282,62 @@ export function mergeTwoLists(list1, list2) {
   prehead.next = list1 === null ? list2 : list1
   return res.next
 }
+
+/**
+ * 
+ * @param {SingleListNode} l 
+ */
+export function logHelper(l) {
+  console.log(toArray(l))
+}
+
+
+/**
+ * @description 两数相加
+ * @param {SingleListNode} l1
+ * @param {SingleListNode} l2
+ * @return {SingleListNode}
+ */
+export function addTwoNumbers(l1, l2) {
+  let prehead = new SingleListNode(-1)
+  const res = prehead
+  while (l1 && l2) {
+    const sum = l1.val + l2.val
+    const node = new SingleListNode(sum % 10)
+    prehead.next = node
+    prehead = prehead.next
+    if (sum >= 10) {
+      const add = Math.floor(sum / 10)
+      /**
+       * 进位的数据优先挂到短的链表上
+       * 如果两个链表都不为空 随便找一个节点 把进位加上
+       */
+      if (l1.next === null) {
+        l1.next = new SingleListNode(add)
+      } else if (l2.next === null) {
+        l2.next = new SingleListNode(add)
+      } else {
+        l1.next.val += add
+      }
+    }
+    l1 = l1.next
+    l2 = l2.next
+  }
+  prehead.next = l1 || l2
+  return res.next
+}
+
+logHelper(addTwoNumbers(
+  createLinkedListFromArray([2, 4, 3]).head,
+  createLinkedListFromArray([5, 6, 4]).head,
+))
+
+logHelper(addTwoNumbers(
+  createLinkedListFromArray([0]).head,
+  createLinkedListFromArray([0]).head,
+))
+
+logHelper(addTwoNumbers(
+  createLinkedListFromArray([9,9,9,9,9,9,9]).head,
+  createLinkedListFromArray([9,9,9,9]).head,
+))
