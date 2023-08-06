@@ -1,4 +1,5 @@
 import { LinkedList, SingleListNode } from "./linkedList.js"
+import { DoublyListNode } from './doubleLinkedList.js'
 
 /**
  * @description 使用数组创建链表
@@ -327,17 +328,41 @@ export function addTwoNumbers(l1, l2) {
   return res.next
 }
 
-logHelper(addTwoNumbers(
-  createLinkedListFromArray([2, 4, 3]).head,
-  createLinkedListFromArray([5, 6, 4]).head,
-))
 
-logHelper(addTwoNumbers(
-  createLinkedListFromArray([0]).head,
-  createLinkedListFromArray([0]).head,
-))
+class RandomNode {
+  /**
+   * @param {number} val 
+   * @param {object} next 
+   * @param {object} random 
+   */
+  constructor(val, next = null, random = null) {
+    this.val = val
+    this.next = next
+    this.random = random
+  }
+}
 
-logHelper(addTwoNumbers(
-  createLinkedListFromArray([9,9,9,9,9,9,9]).head,
-  createLinkedListFromArray([9,9,9,9]).head,
-))
+/**
+ * @description 赋值带随机指针的链表
+ * @param {RandomNode} head 
+ * @returns {RandomNode}
+ */
+export function copyRandomList(head) {
+  if (head === null) {
+    return head
+  }
+  const map = new Map()
+  let cur = head
+  while (cur) {
+    map.set(cur, new RandomNode(cur.val))
+    cur = cur.next
+  }
+  cur = head
+  while (cur) {
+    map.get(cur).next = map.get(cur.next) || null
+    map.get(cur).random = map.get(cur.random) || null
+    cur = cur.next
+  }
+  return map.get(head)
+}
+
