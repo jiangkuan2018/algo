@@ -1,5 +1,4 @@
 import { LinkedList, SingleListNode } from "./linkedList.js"
-import { DoublyListNode } from './doubleLinkedList.js'
 
 /**
  * @description 使用数组创建链表
@@ -365,4 +364,3 @@ export function copyRandomList(head) {
   }
   return map.get(head)
 }
-

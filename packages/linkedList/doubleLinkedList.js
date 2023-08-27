@@ -14,8 +14,8 @@ export class DoublyListNode {
 
 export class DoublyLinkedList {
   constructor() {
-    this.dummyHead = new DoublyListNode(Number.POSITIVE_INFINITY)
-    this.dummyTail = new DoublyListNode(Number.NEGATIVE_INFINITY)
+    this.dummyHead = new DoublyListNode(Infinity)
+    this.dummyTail = new DoublyListNode(-Infinity)
     this.dummyHead.next = this.dummyTail
     this.dummyTail.prev = this.dummyHead
     this.size = 0
